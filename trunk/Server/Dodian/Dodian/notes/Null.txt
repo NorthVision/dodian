@@ -1,0 +1,51 @@
+// FrontEnd Plus GUI for JAD
+// DeCompiled : Null.class
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class Null
+{
+
+    public Null()
+    {
+    }
+
+    public void resetserver()
+    {
+        misc.println("shutting down server");
+        PlayerHandler.kickAllPlayers = true;
+        misc.println("saved all player");
+        closeListener();
+        runserver();
+    }
+
+    public void runserver()
+    {
+        try
+        {
+            String run = "runserver.bat";
+            String xstr = (new StringBuilder()).append("./").append(run).toString();
+            Runtime.getRuntime().exec(xstr);
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void closeListener()
+    {
+        try
+        {
+            server.shutdownClientHandler = true;
+            if(server.clientListener != null)
+                server.clientListener.close();
+            server.clientListener = null;
+        }
+        catch(Exception __ex)
+        {
+            __ex.printStackTrace();
+        }
+    }
+}

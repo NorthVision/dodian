@@ -1,0 +1,23 @@
+14776 bottom right
+14775
+[14769 14770 14771 14772]
+[14773 14774 14775 14776
+
+2311 = what would you like to make  (leather)
+8880 = what would u like to make (3)
+
+[8883 8884 8885]
+
+Dragons
+
+[client-2-Drags]: Text [0,0]: 79 - walk, 80 - attack(claw), 91 - attack(horns),
+92 - die, 89 - block.
+
+tele:
+714 shrink
+308 graphic
+715 grow
+190 gfx out
+
+smelting:
+[2405 2406, 2407, 2409, 2410, 2411, 2412, 2413]

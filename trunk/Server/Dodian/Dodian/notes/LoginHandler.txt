@@ -1,0 +1,168 @@
+import java.util.*;
+import java.sql.*;
+public class LoginHandler extends Thread{
+	public ArrayList<client> clientsIn;
+	public ArrayList<client> clientsOut;
+	public boolean running = true;
+	public LoginHandler(){
+		clientsIn = new ArrayList<client>();
+		clientsOut = new ArrayList<client>();
+	}
+	public void queueLogin(client player){
+		clientsIn.add(player);
+	}
+	public void queueSave(client player){
+		clientsOut.add(player);
+	}
+	public void run(){
+		while(running){
+			for(client in : clientsIn){
+				processLoad(in);
+			}
+			for(client out : clientsOut){
+				processSave(out);
+			}
+		}
+	}
+	public void processLoad(client player){
+		boolean found = false;
+		String playerName = player.playerName;
+		String md5pass = player.passHash(player.playerPass);
+		long start = System.currentTimeMillis();
+		try {
+			int db_id = 0;
+			Connection conn = Database.conn;
+			Statement statement = conn.createStatement();
+			String query = "SELECT * FROM uber3_players WHERE name LIKE '" + playerName+ "'";
+			ResultSet results = statement.executeQuery(query);
+			while (results.next()) {
+				if (player.playerName.equalsIgnoreCase(results.getString("name"))) {
+					if (!md5pass.equals(results.getString("pass"))) {
+						player.loginReturn = 3;
+					}
+					player.playerPass = player.md5pass;
+					int group = results.getInt("banned");
+					if (group == 1) { //banned from forums
+						player.loginReturn = 4;
+					}
+					/*
+					long thisTime = System.currentTimeMillis();
+					long lastTime = results.getLong("lastlogin");
+					if(thisTime - lastTime < 30000){
+						loginDelay = (int)(thisTime-lastTime / 1000) + 1;
+						if(loginDelay > 30) loginDelay = 30;
+						return 21;
+					}*/
+					if(results.getInt("muted") > 0){
+						player.muted = true;
+					}
+					db_id = results.getInt("id");
+					found = true;
+					player.heightLevel = results.getInt("height");
+					player.ancients = 1;
+					if (results.getInt("posx") > 0 && results.getInt("posy") > 0) {
+						player.absX = results.getInt("posx");
+						player.absY = results.getInt("posy");
+						player.teleportToX = results.getInt("posx");
+						player.teleportToY = results.getInt("posy");
+					}
+					player.playerRights = results.getInt("rights");
+					long lastOn = results.getLong("lastlogin");
+					int health = results.getInt("health");
+					if(health > 0){
+						player.currentHealth = health;
+					}
+					for (int i = 0; i < 21; i++) {
+						player.playerXP[i] = results.getInt(player.statName[i]);
+						int level = 0;
+						if (player.playerXP[i] > 13040000) {
+							level = 99;
+						} else {
+							level = player.getLevelForXP(player.playerXP[i]);
+						}
+						player.playerLevel[i] = level;
+						player.setSkillLevel(i, level, player.playerXP[i]);
+						if(i == 3){
+							player.currentHealth = level;
+							player.maxHealth = level;
+						}
+					}
+					int index = 0;
+					String bank = results.getString("bank");
+					String[] params = null;
+					if(bank.length() > 0){
+						params = bank.split("\\s");
+						for(int i = 0; i < params.length; i++){
+							if(params[i].length() > 0){
+								String[] part = params[i].split("-");
+								player.bankItems[index] = Integer.parseInt(part[0]);
+								player.bankItemsN[index] = Integer.parseInt(part[1]);
+								index++;
+							}
+						}
+					}
+					index = 0;
+					String inv = results.getString("inventory");
+					if(inv.length() > 0){
+						params = inv.split("\\s");
+						for(int i = 0; i < params.length; i++){
+							if(params[i].length() > 0){
+								String[] part = params[i].split("-");
+								player.playerItems[index] = Integer.parseInt(part[0]);
+								player.playerItemsN[index] = Integer.parseInt(part[1]);
+								index++;
+							}
+						}
+					}
+					index = 0;
+					String equip = results.getString("equipment");
+					if(equip.length() > 0){
+						params = equip.split("\\s");
+						index = 0;
+						for(int i = 0; i < params.length; i++){
+							if(params[i].length() > 0){
+								String[] part = params[i].split("-");
+								int id = Integer.parseInt(part[0]);
+								if(id == 0) id = -1;
+								player.playerEquipment[index] = id;
+								player.playerEquipmentN[index] = Integer.parseInt(part[1]);
+								index++;
+							}
+						}
+					}
+					String look = results.getString("look");
+					if(look.length() > 0){
+						String[] lookParts = look.split("\\s");
+						if(player.playerLooks.length != 18 || lookParts.length != 18){
+							player.println("Invalid look array length!");
+						}
+						for(int i = 0; i < 18; i++){
+							player.playerLooks[i] = Integer.parseInt(lookParts[i]);
+						}
+					} else {
+						player.lookNeeded = true;
+					}
+				}
+			}
+			if (!found) {
+				results = statement.executeQuery("SELECT * FROM uber3_players ORDER BY id DESC");
+				results.next();
+				db_id = results.getInt("id") + 1;
+				query = "INSERT INTO uber3_players SET name = '" + playerName + "', id = " + db_id;
+				statement.executeUpdate(query);
+				player.playerEquipment[player.playerWeapon] = 1277;
+				player.playerEquipment[player.playerShield] = 1171;
+				player.playerEquipmentN[player.playerWeapon] = 1;
+				player.playerEquipmentN[player.playerShield] = 1;
+				player.lookNeeded = true;
+			}
+			statement.close();
+			long end = System.currentTimeMillis() - start;
+			player.println("Loading Process Completed  [" + end + "ms]");
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void processSave(client player){}
+}
+		
