@@ -1,0 +1,36 @@
+// FrontEnd Plus GUI for JAD
+// DeCompiled : SHA1.class
+
+import java.io.PrintStream;
+import java.security.MessageDigest;
+import sun.misc.BASE64Encoder;
+
+public final class SHA1
+{
+
+    public SHA1()
+    {
+    }
+
+    public static String encrypt(String plaintext)
+    {
+        MessageDigest md = null;
+        try
+        {
+            md = MessageDigest.getInstance("SHA");
+            md.update(plaintext.getBytes("UTF-8"));
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        byte raw[] = md.digest();
+        String hash = (new BASE64Encoder()).encode(raw);
+        return hash;
+    }
+
+    public static void main(String args[])
+    {
+        System.out.println(encrypt(args[0]));
+    }
+}

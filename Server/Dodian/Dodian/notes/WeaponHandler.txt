@@ -1,0 +1,210 @@
+			/*[) ----- Attack ----- (]*/
+			if (CLAttack > getLevelForXP(playerXP[0]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLAttack+" "+statName[playerAttack]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Strength----- (]*/
+			if (CLStrength > getLevelForXP(playerXP[2]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLStrength+" "+statName[playerStrength]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Defence ----- (]*/
+			if (CLDefence > getLevelForXP(playerXP[1]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLDefence+" "+statName[playerDefence]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Ranged ----- (]*/
+			if (CLRanged > getLevelForXP(playerXP[4])) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLRanged+" "+statName[playerRanged]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Prayer ----- (]*/
+			if (CLPrayer > getLevelForXP(playerXP[5]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLCLPrayer+" "+statName[playerCLPrayer]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Magic ----- (]*/
+			if (CLMagic > getLevelForXP(playerXP[6]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLMagic+" "+statName[playerMagic]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Runecraft ----- (]*/
+			if (CLRunecraft > getLevelForXP(playerXP[20]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLRunecraft+" "+statName[playerRunecraft]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Hitpoints ----- (]*/
+			if (CLHitpoints > getLevelForXP(playerXP[3]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLHitpoints+" "+statName[playerHitpoints]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Agility ----- (]*/
+			if (CLAgility > getLevelForXP(playerXP[16]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLAgility+" "+statName[playerAgility]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Herblore ----- (]*/
+			if (CLHerblore > getLevelForXP(playerXP[15]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLHerblore+" "+statName[playerHerblore]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Thieving ----- (]*/
+			if (CLThieving > getLevelForXP(playerXP[17]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLThieving+" "+statName[playerThieving]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Crafting ----- (]*/
+			if (CLCrafting > getLevelForXP(playerXP[12]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLCrafting+" "+statName[playerCrafting]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Fletching ----- (]*/
+			if (CLFletching > getLevelForXP(playerXP[9]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLFletching+" "+statName[playerFletching]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Slayer ----- (]*/
+			if (CLSlayer > getLevelForXP(playerXP[18]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLSlayer+" "+statName[playerSlayer]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Mining ----- (]*/
+			if (CLMining > getLevelForXP(playerXP[14]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLMining+" "+statName[playerMining]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Smithing ----- (]*/
+			if (CLSmithing > getLevelForXP(playerXP[13]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLSmithing+" "+statName[playerSmithing]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Fishing ----- (]*/
+			if (CLFishing > getLevelForXP(playerXP[10]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLFishing+" "+statName[playerFishing]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Cooking ----- (]*/
+			if (CLCooking > getLevelForXP(playerXP[7]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLCooking+" "+statName[playerCooking]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Firemaking ----- (]*/
+			if (CLFiremaking > getLevelForXP(playerXP[11]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLFiremaking+" "+statName[playerFiremaking]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Woodcutting ----- (]*/
+			if (CLWoodcutting > getLevelForXP(playerXP[8]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLWoodcutting+" "+statName[playerWoodcutting]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
+			/*[) ----- Farming ----- (]*/
+			if (CLFarming > getLevelForXP(playerXP[19]) || playerRights <= 1) {
+				if (server.mysql.SQLCheckMember(playerName) || CLMembers == 0) {
+					sendMessage("You need "+CLFarming+" "+statName[playerFarming]+" to equip this item.");
+					GoFalse = true;
+				} else if(CLMembers == 1 && !server.mysql.SQLCheckMember(playerName)) {
+					sendMessage("You need to be a member to equip this item.");
+					GoFalse = true;
+				}
+			}
